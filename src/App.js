@@ -73,7 +73,7 @@ function About() {
 function Users() {
 
   React.useEffect(() => {
-    document.title = "About"
+    document.title = "Users"
   }, [])
 
   return <h2>Users</h2>;
