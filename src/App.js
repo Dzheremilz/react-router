@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 export default function App() {
@@ -30,17 +31,20 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
+          <Route exact path="/about">
             <About />
           </Route>
-          <Route path="/users">
+          <Route exact path="/users">
             <Users />
           </Route>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="*">
+          <Route path="/404">
             <NoMatch />
+          </Route>
+          <Route path="*">
+            <Redirect to="/404" />
           </Route>
         </Switch>
       </div>
@@ -49,23 +53,43 @@ export default function App() {
 }
 
 function Home() {
+
+  React.useEffect(() => {
+    document.title = "Home"
+  }, [])
+
   return <h2>Home</h2>;
 }
 
 function About() {
+
+  React.useEffect(() => {
+    document.title = "About"
+  }, [])
+
   return <h2>About</h2>;
 }
 
 function Users() {
+
+  React.useEffect(() => {
+    document.title = "About"
+  }, [])
+
   return <h2>Users</h2>;
 }
 
 function NoMatch() {
+
+  React.useEffect(() => {
+    document.title = "404 Page not found"
+  }, [])
+
   return (
     <div>
-      <h3>
+      <h2>
         Error 404
-      </h3>
+      </h2>
     </div >
   );
 }
